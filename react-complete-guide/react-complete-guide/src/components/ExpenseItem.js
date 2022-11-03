@@ -1,17 +1,14 @@
 import './ExpenseItem.css';
 import ExpenseDate from './ExpenseDate';
+import Card from './Card';
 
-const ExpenseItem = ({ title, amount, date }) => {
-  const month = date.toLocaleString('en-US', { month: 'long' });
-  const day = date.toLocaleString('en-US', { day: '2-digit' });
-  const year = date.getFullYear();
-
+const ExpenseItem = ({ title, amount, date, id }) => {
   return (
-    <div className="expense-item">
+    <Card className="expense-item">
       <ExpenseDate date={date} />
       <h2 className="expense-item__description">{title}</h2>
       <div className="expense-item__price">{amount}</div>
-    </div>
+    </Card>
   );
 };
 
