@@ -1,8 +1,9 @@
+import { useEffect, useState } from 'react';
 import Expenses from './components/Expenses/Expenses';
 import NewExpense from './components/NewExpense/NewExpense';
 
 function App() {
-  const expenses = [
+  const STARTING_EXPENSES = [
     {
       title: 'Car insurance',
       amount: 250.25,
@@ -24,16 +25,32 @@ function App() {
     },
   ];
 
+  const [expenses, setExpenses] = useState(STARTING_EXPENSES);
+
+  const [preferredId, setPreferredId] = useState();
+
   const addExpenseHandler = (expense) => {
-    console.log('In app.js');
-    console.log(expense);
+    setExpenses((expenses) => [expense, ...expenses]);
   };
 
-  console.log(expenses);
+  useEffect(() => {
+    const idsArray = expenses.map((expense) => expense.id);
+
+    console.log(idsArray);
+
+    console.log(Math.max(...idsArray));
+
+    setPreferredId(Math.max(...idsArray) + 1);
+
+    console.log('useeffect called, preferred id: ' + preferredId);
+  }, [
+    expenses,
+    preferredId /* not sure why i need this preferredId here for the vscode to stop screaming */,
+  ]);
 
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
+      <NewExpense onAddExpense={addExpenseHandler} preferredId={preferredId} />
       <p>This is also visible</p>
       <Expenses expenses={expenses} />
     </div>

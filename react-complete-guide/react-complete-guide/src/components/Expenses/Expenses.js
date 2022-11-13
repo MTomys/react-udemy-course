@@ -15,26 +15,30 @@ const Expenses = ({ expenses }) => {
     console.log(selectedFilterYear);
   };
 
+  const getFilteredExpenses = () =>
+    expenses.filter(
+      (expense) => expense.date.getFullYear() === parseInt(selectedFilterYear)
+    );
+
+  let expensesContent = <p>No expenses found</p>;
+
+  if (getFilteredExpenses().length > 0) {
+    expensesContent = getFilteredExpenses().map((expense) => (
+      <ExpenseItem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      />
+    ));
+  }
+
   return (
     <>
       <ExpensesFilter onFilterSelection={expenseFilterSelectionHandler} />
       <Card className="expenses">
         {selectedFilterYear ? (
-          <>
-            {expenses
-              .filter(
-                (expense) =>
-                  expense.date.getFullYear() === parseInt(selectedFilterYear)
-              )
-              .map((expense) => (
-                <ExpenseItem
-                  key={expense.id}
-                  title={expense.title}
-                  amount={expense.amount}
-                  date={expense.date}
-                />
-              ))}
-          </>
+          <>{expensesContent}</>
         ) : (
           <>
             {expenses.map((expense) => (
