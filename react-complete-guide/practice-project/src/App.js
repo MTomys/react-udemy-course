@@ -9,6 +9,7 @@ function App() {
     { name: 'User 2', age: 33, id: 2 },
     { name: 'User 3', age: 51, id: 3 },
     { name: 'User 4', age: 19, id: 4 },
+    { name: 'User 5', age: 19, id: 5 },
   ]);
 
   const handleUserAddition = (newUser) => {
