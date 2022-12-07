@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import UserForm from './components/UserForm';
 import UserItems from './components/UserItems';
+import Card from './components/ui/Card';
 
 function App() {
   const [users, setUsers] = useState([
@@ -19,8 +20,13 @@ function App() {
   return (
     <div className="App">
       <main>
-        <UserForm onAddNewUser={handleUserAddition} />
-        <UserItems users={users} />
+        <Card>
+          <UserForm onAddNewUser={handleUserAddition} />
+        </Card>
+
+        <Card>
+          <UserItems users={users} />
+        </Card>
       </main>
     </div>
   );

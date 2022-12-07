@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './UserItem.modal.css';
+import styles from './UserItem.module.css';
 
 const UserItem = ({ name, age, userKey }) => {
   return (
