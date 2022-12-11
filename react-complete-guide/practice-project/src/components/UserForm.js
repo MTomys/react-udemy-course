@@ -12,17 +12,23 @@ const UserForm = ({ onAddNewUser }) => {
 
   const popupClosedHandler = () => setShowModalPopup(false);
 
-  const handleButtonClick = (e) => {
-    if (username !== '' && age > 0 && !setShowModalPopup) {
+  const handleButtonClick = () => {
+    console.log(`
+    username not empty => ${username !== ''} 
+    age more than 0 => ${age > 0}
+    modal popup active? => ${showModalPopup}
+
+    `);
+    if (username !== '' && age > 0 && !showModalPopup) {
       onAddNewUser({ name: username, age: age, id: Math.random() });
       setUsername('');
       setAge('');
       return;
     }
 
-    username === '' && setModalPopupMessage('Invalid username');
     age <= 0 && setModalPopupMessage('Invalid age');
-    setShowModalPopup(true);
+    username === '' && setModalPopupMessage('Invalid username');
+    (age <= 0 || username === '') && setShowModalPopup(true);
   };
 
   return (

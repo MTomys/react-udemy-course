@@ -5,7 +5,7 @@ import styles from './ModalAlert.module.css';
 const ModalAlert = ({ alertMessage, onClose }) => {
   return (
     <div className={styles.modalAlert}>
-      {alertMessage}
+      <div>{alertMessage}</div>
       <button onClick={() => onClose()}>X</button>
     </div>
   );
